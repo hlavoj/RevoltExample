@@ -1,5 +1,5 @@
 using Domain;
-using Domain.Models;
+using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -35,6 +35,7 @@ namespace RevoltExample
                 .AddDefaultUI();
 
             services.AddTransient<IDatabaseSeed, DatabaseSeed>();
+            services.AddTransient<IWordGenerator, WordGenerator>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
