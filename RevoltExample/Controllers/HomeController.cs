@@ -44,8 +44,7 @@ namespace RevoltExample.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                _logger.LogError(e,"Unable to record user activity");
             }
 
             return View(new UserIdentificator { WordOne = idOne, WordTwo = idTwo });

@@ -18,10 +18,12 @@ namespace Domain.Services
         public async Task RecordActivity(string idOne, string idTwo)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.IdOne == idOne && u.IdTwo == idTwo);
-            var userActivity = new UserActivity {DateOfAction = DateTime.Now, User = user};
-
-            await _context.UserActivities.AddAsync(userActivity);
-            await _context.SaveChangesAsync();
+            if (user != null)
+            {
+                var userActivity = new UserActivity { DateOfAction = DateTime.Now, User = user };
+                await _context.UserActivities.AddAsync(userActivity);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
