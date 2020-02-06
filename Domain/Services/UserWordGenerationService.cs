@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Domain.Helpers;
 using Microsoft.EntityFrameworkCore;
 using RevoltExample.Controllers;
 

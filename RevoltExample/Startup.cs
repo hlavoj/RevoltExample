@@ -1,5 +1,7 @@
 using Domain;
 using Domain.Entities;
+using Domain.Helpers;
+using Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -34,8 +36,13 @@ namespace RevoltExample
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
 
+            services.AddTransient<IUserEmailService, UserEmailService>();
+            services.AddTransient<IUserWordGenerationService, UserWordGenerationService>();
+
             services.AddTransient<IDatabaseSeed, DatabaseSeed>();
             services.AddTransient<IWordGenerator, WordGenerator>();
+            services.AddTransient<IEmailTemplates, EmailTemplates>();
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

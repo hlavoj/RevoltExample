@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Domain;
 using Domain.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace RevoltExample.Controllers
 {
@@ -16,10 +11,12 @@ namespace RevoltExample.Controllers
     {
 
         private readonly IUserWordGenerationService _generationService;
+        private readonly IUserEmailService _emailService;
 
-        public ActivityController(IUserWordGenerationService generationService)
+        public ActivityController(IUserWordGenerationService generationService, IUserEmailService emailService)
         {
             _generationService = generationService;
+            _emailService = emailService;
         }
 
         [HttpGet("generate")]
@@ -28,6 +25,21 @@ namespace RevoltExample.Controllers
             try
             {
                 await _generationService.RegenerateWordsForUsers();
+            }
+            catch (Exception e)
+            {
+                // should log this
+                // return internal server error
+                throw;
+            }
+        }
+
+        [HttpGet("send")]
+        public async Task Send()
+        {
+            try
+            {
+                await _emailService.SendMails();
             }
             catch (Exception e)
             {
