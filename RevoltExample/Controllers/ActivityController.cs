@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace RevoltExample.Controllers
 {
@@ -12,11 +13,14 @@ namespace RevoltExample.Controllers
 
         private readonly IUserWordGenerationService _generationService;
         private readonly IUserEmailService _emailService;
+        private readonly ILogger<ActivityController> _logger;
 
-        public ActivityController(IUserWordGenerationService generationService, IUserEmailService emailService)
+
+        public ActivityController(IUserWordGenerationService generationService, IUserEmailService emailService, ILogger<ActivityController> logger)
         {
             _generationService = generationService;
             _emailService = emailService;
+            _logger = logger;
         }
 
         [HttpGet("generate")]
@@ -28,8 +32,7 @@ namespace RevoltExample.Controllers
             }
             catch (Exception e)
             {
-                // should log this
-                // return internal server error
+                _logger.LogError(e, "Unable to generate words to users.");
                 throw;
             }
         }
@@ -43,8 +46,7 @@ namespace RevoltExample.Controllers
             }
             catch (Exception e)
             {
-                // should log this
-                // return internal server error
+                _logger.LogError(e, "Unable to send emails to users.");
                 throw;
             }
         }

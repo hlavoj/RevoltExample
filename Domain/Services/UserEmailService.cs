@@ -23,7 +23,7 @@ namespace Domain.Services
             var users = await _context.Users.ToListAsync();
             foreach (var user in users)
             {
-                var message = _emailTemplates.GetTestEmail(user.UserName, $"http://localhost:44373/newpage/{user.IdOne}/{user.IdTwo}");
+                var message = _emailTemplates.GetTestEmail(user.UserName, $"https://localhost:44373/newpage/{user.IdOne}/{user.IdTwo}");
                 await _emailSender.SendMail(user.Email, "test", message);
             }
         }
