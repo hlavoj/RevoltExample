@@ -38,6 +38,7 @@ namespace RevoltExample
 
             services.AddTransient<IUserEmailService, UserEmailService>();
             services.AddTransient<IUserWordGenerationService, UserWordGenerationService>();
+            services.AddTransient<IActivityService, ActivityService>();
 
             services.AddTransient<IDatabaseSeed, DatabaseSeed>();
             services.AddTransient<IWordGenerator, WordGenerator>();

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Domain.Helpers;
+using Domain.Model;
 using Microsoft.EntityFrameworkCore;
-using RevoltExample.Controllers;
 
 namespace Domain.Services
 {

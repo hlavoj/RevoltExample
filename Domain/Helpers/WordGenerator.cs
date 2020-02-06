@@ -253,7 +253,7 @@ namespace Domain.Helpers
         public string GetRandomWord()
         {
             Random random = new Random();
-            var index = random.Next(0, words.Length);
+            var index = random.Next(0, words.Length-1);
             return words[index];
         }
     }

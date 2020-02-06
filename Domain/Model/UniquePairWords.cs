@@ -1,4 +1,4 @@
-﻿namespace RevoltExample.Controllers
+﻿namespace Domain.Model
 {
     public class UniquePairWords
     {

@@ -25,7 +25,7 @@ namespace RevoltExample
                 }
                 catch (Exception ex)
                 {
-
+                    // ignor database init seed fail
                 }
             }
 
